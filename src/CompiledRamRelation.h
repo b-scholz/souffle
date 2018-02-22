@@ -1025,6 +1025,16 @@ class GenericRelationGroup<config, arity> {
     using tuple_type = Tuple<RamDomain, arity>;
 
 public:
+
+    template<typename Index>
+    void get() {}
+
+    template<typename Index>
+    void get() const {}
+
+    template<typename Index>
+    void equal_range(const tuple_type&) const {}
+
     void insert(const tuple_type&) {
         // nothing to do here
     }
@@ -1071,16 +1081,16 @@ public:
 
     template <typename Index>
     typename std::enable_if<!config::template covers_query<Index, First>::value,
-            typename std::remove_reference<decltype(nested.get<Index>())>::type>::type&
+            typename std::remove_reference<decltype(nested.template get<Index>())>::type>::type&
     get() {
-        return nested.get<Index>();
+        return nested.template get<Index>();
     }
 
     template <typename Index>
     const typename std::enable_if<!config::template covers_query<Index, First>::value,
-            typename std::remove_reference<decltype(nested.get<Index>())>::type>::type&
+            typename std::remove_reference<decltype(nested.template get<Index>())>::type>::type&
     get() const {
-        return nested.get<Index>();
+        return nested.template get<Index>();
     }
 
     template <typename Index>
@@ -1105,9 +1115,9 @@ public:
 
     template <typename Index>
     typename std::enable_if<!config::template covers_query<Index, First>::value,
-            decltype(nested.equal_range<Index>(tuple_type()))>::type
+            decltype(nested.template equal_range<Index>(tuple_type()))>::type
     equal_range(const tuple_type& t) const {
-        return nested.equal_range<Index>(t);
+        return nested.template equal_range<Index>(t);
     }
 
     bool empty() const {

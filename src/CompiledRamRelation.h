@@ -206,7 +206,11 @@ template <typename config>
 struct GenericSetup {
     // determines the relation implementation for a given use case
     template <unsigned arity, typename... Indices>
-    using relation = detail::GenericRelation<config, arity, Indices...>;
+    using relation = typename std::conditional<
+            arity == 0,
+            detail::AutoRelation<0>,
+            detail::GenericRelation<config, arity, Indices...>
+        >::type;
 };
 
 namespace detail {

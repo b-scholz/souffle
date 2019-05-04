@@ -661,10 +661,9 @@ void RAMI::evalOp(const RamOperation& op, const InterpreterContext& args) {
             ctxt[aggregate.getTupleId()] = tuple;
 
             // run nested part - using base class visitor
-            if (aggregate.getFunction() == souffle::MAX || aggregate.getFunction() == souffle::MIN) {
-                if (res == (aggregate.getFunction() == souffle::MAX ? MIN_RAM_DOMAIN : MAX_RAM_DOMAIN)) {
-                    return true;
-                }
+            if ((aggregate.getFunction() == souffle::MAX && res == MIN_RAM_DOMAIN) ||
+                    (aggregate.getFunction() == souffle::MIN && res == MAX_RAM_DOMAIN)) {
+                return true;
             }
             return visitSearch(aggregate);
         }

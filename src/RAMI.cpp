@@ -484,7 +484,9 @@ void RAMI::evalOp(const RamOperation& op, const InterpreterContext& args) {
             // use simple iterator
             for (const RamDomain* cur : rel) {
                 ctxt[scan.getTupleId()] = cur;
-                if (!visitSearch(scan)) break;
+                if (!visitSearch(scan)) {
+                    break;
+                }
             }
             return true;
         }
@@ -518,7 +520,9 @@ void RAMI::evalOp(const RamOperation& op, const InterpreterContext& args) {
             for (auto ip = range.first; ip != range.second; ++ip) {
                 const RamDomain* data = *(ip);
                 ctxt[scan.getTupleId()] = data;
-                if (!visitSearch(scan)) break;
+                if (!visitSearch(scan)) {
+                    break;
+                }
             }
             return true;
         }
@@ -754,10 +758,9 @@ void RAMI::evalOp(const RamOperation& op, const InterpreterContext& args) {
             ctxt[aggregate.getTupleId()] = tuple;
 
             // run nested part - using base class visitor
-            if (aggregate.getFunction() == souffle::MAX || aggregate.getFunction() == souffle::MIN) {
-                if (res == (aggregate.getFunction() == souffle::MAX ? MIN_RAM_DOMAIN : MAX_RAM_DOMAIN)) {
-                    return true;
-                }
+            if ((aggregate.getFunction() == souffle::MAX && res == MIN_RAM_DOMAIN) ||
+                    (aggregate.getFunction() == souffle::MIN && res == MAX_RAM_DOMAIN)) {
+                return true;
             }
             return visitSearch(aggregate);
         }

@@ -22,7 +22,7 @@
 #include "ast/Relation.h"
 #include "ast/TranslationUnit.h"
 #include "ast/Variable.h"
-#include "ast/Visitor.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/utility/MiscUtil.h"
 #include <functional>
 #include <memory>

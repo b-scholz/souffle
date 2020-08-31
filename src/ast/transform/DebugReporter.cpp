@@ -17,7 +17,7 @@
 #include "ast/transform/DebugReporter.h"
 #include "ast/Program.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
+#include "ast/utility/Utils.h"
 #include "reports/DebugReport.h"
 #include <chrono>
 

@@ -19,7 +19,7 @@
 #include "ast/Atom.h"
 #include "ast/Literal.h"
 #include "ast/Node.h"
-#include "ast/NodeMapper.h"
+#include "ast/utility/NodeMapper.h"
 #include "parser/SrcLocation.h"
 #include "souffle/utility/ContainerUtil.h"
 #include "souffle/utility/MiscUtil.h"

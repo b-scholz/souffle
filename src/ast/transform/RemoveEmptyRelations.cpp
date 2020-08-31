@@ -21,9 +21,9 @@
 #include "ast/Program.h"
 #include "ast/Relation.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/IOType.h"
+#include "ast/utility/Utils.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/utility/MiscUtil.h"
 #include <algorithm>
 #include <memory>

@@ -16,14 +16,14 @@
 #include "ast/Clause.h"
 #include "ast/Constraint.h"
 #include "ast/Node.h"
-#include "ast/NodeMapper.h"
 #include "ast/Program.h"
 #include "ast/RecordInit.h"
 #include "ast/TranslationUnit.h"
 #include "ast/UnnamedVariable.h"
-#include "ast/Utils.h"
 #include "ast/Variable.h"
-#include "ast/Visitor.h"
+#include "ast/utility/NodeMapper.h"
+#include "ast/utility/Utils.h"
+#include "ast/utility/Visitor.h"
 #include <memory>
 #include <set>
 #include <vector>

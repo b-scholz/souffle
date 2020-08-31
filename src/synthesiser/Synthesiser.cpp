@@ -34,11 +34,11 @@
 #include "souffle/BinaryConstraintOps.h"
 #include "souffle/RamTypes.h"
 #include "souffle/SymbolTable.h"
-#include "souffle/json11.h"
 #include "souffle/utility/FileUtil.h"
 #include "souffle/utility/MiscUtil.h"
 #include "souffle/utility/StreamUtil.h"
 #include "souffle/utility/StringUtil.h"
+#include "souffle/utility/json11.h"
 #include "souffle/utility/tinyformat.h"
 #include "synthesiser/SynthesiserRelation.h"
 #include <algorithm>
@@ -2179,7 +2179,7 @@ void Synthesiser::generateCode(std::ostream& os, const std::string& id, bool& wi
     os << "\n#include \"souffle/CompiledSouffle.h\"\n";
     if (Global::config().has("provenance")) {
         os << "#include <mutex>\n";
-        os << "#include \"souffle/Explain.h\"\n";
+        os << "#include \"souffle/provenance/Explain.h\"\n";
     }
 
     if (Global::config().has("live-profile")) {

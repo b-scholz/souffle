@@ -22,11 +22,11 @@
 #include "ast/Literal.h"
 #include "ast/QualifiedName.h"
 #include "ast/Variable.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/Analysis.h"
 #include "ast/transform/Pipeline.h"
 #include "ast/transform/RemoveRedundantRelations.h"
 #include "ast/transform/Transformer.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/utility/MiscUtil.h"
 #include "souffle/utility/StreamUtil.h"
 #include <cstddef>
@@ -215,9 +215,6 @@ private:
  */
 class MagicSetTransformer::AdornDatabaseTransformer : public AstTransformer {
 public:
-    // Helper class for determining variable binding involving functors
-    class BindingStore;
-
     std::string getName() const override {
         return "AdornDatabaseTransformer";
     }
@@ -309,59 +306,6 @@ private:
     static std::unique_ptr<AstClause> createMagicClause(const AstAtom* atom,
             const std::vector<std::unique_ptr<AstAtom>>& constrainingAtoms,
             const std::vector<const AstBinaryConstraint*> eqConstraints);
-};
-
-/**
- * A storage of bound variables that dynamically determines the set of bound variables
- * within a clause.
- */
-class MagicSetTransformer::AdornDatabaseTransformer::BindingStore {
-public:
-    BindingStore(const AstClause* clause, const std::string& adornmentMarker);
-
-    void bindVariable(std::string varName) {
-        boundVariables.insert(varName);
-        reduceDependencies();
-    }
-
-    bool isBound(std::string varName) const {
-        return contains(boundVariables, varName) || contains(boundHeadVariables, varName);
-    }
-
-private:
-    // Helper types to represent a disjunction of several dependency sets
-    using ConjBindingSet = std::set<std::string>;
-    using DisjBindingSet = std::set<ConjBindingSet>;
-
-    std::set<std::string> boundVariables{};
-    std::set<std::string> boundHeadVariables{};
-    std::map<std::string, DisjBindingSet> variableDependencies{};
-
-    /**
-     * Add a new conjunction of variables as a potential binder for a given variable.
-     * The variable is considered bound if all variables in the conjunction are bound.
-     */
-    void addBindingDependency(std::string variable, ConjBindingSet dependency) {
-        if (!contains(variableDependencies, variable)) {
-            variableDependencies[variable] = DisjBindingSet();
-        }
-        variableDependencies[variable].insert(dependency);
-    }
-
-    /** Add binding dependencies formed on lhs by a <lhs> = <rhs> equality constraint. */
-    void processEqualityBindings(const AstArgument* lhs, const AstArgument* rhs);
-
-    /** Generate all binding dependencies implied by the constraints within a given clause. */
-    void generateBindingDependencies(const AstClause* clause);
-
-    /** Reduce a conjunctive set of dependencies based on the current bound variable set. */
-    ConjBindingSet reduceDependency(const ConjBindingSet& origDependency);
-
-    /** Reduce a disjunctive set of variable dependencies based on the current bound variable set. */
-    DisjBindingSet reduceDependency(const DisjBindingSet& origDependency);
-
-    /** Reduce the full set of dependencies for all tracked variables, binding whatever needs to be bound. */
-    bool reduceDependencies();
 };
 
 }  // namespace souffle

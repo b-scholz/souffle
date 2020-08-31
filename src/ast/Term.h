@@ -18,7 +18,7 @@
 
 #include "ast/Argument.h"
 #include "ast/Node.h"
-#include "ast/NodeMapper.h"
+#include "ast/utility/NodeMapper.h"
 #include "parser/SrcLocation.h"
 #include "souffle/utility/ContainerUtil.h"
 #include <algorithm>

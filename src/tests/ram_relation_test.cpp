@@ -33,7 +33,7 @@
 #include "reports/ErrorReport.h"
 #include "souffle/RamTypes.h"
 #include "souffle/SymbolTable.h"
-#include "souffle/json11.h"
+#include "souffle/utility/json11.h"
 #include <algorithm>
 #include <cstddef>
 #include <iomanip>

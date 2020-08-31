@@ -18,8 +18,8 @@
 
 #include "ast/Atom.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
 #include "ast/analysis/Analysis.h"
+#include "ast/utility/Utils.h"
 #include <string>
 
 namespace souffle {

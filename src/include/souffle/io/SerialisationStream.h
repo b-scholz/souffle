@@ -17,7 +17,7 @@
 #pragma once
 
 #include "souffle/RamTypes.h"
-#include "souffle/json11.h"
+#include "souffle/utility/json11.h"
 
 #include <cassert>
 #include <cstddef>

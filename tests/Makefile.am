@@ -30,7 +30,7 @@ installcheck-local: atconfig atlocal $(TESTSUITE)
 
 clean-local:
 	test ! -f '$(TESTSUITE)' ||  $(SHELL) '$(TESTSUITE)' --clean
-	test -e $(abs_top_builddir)/include && rm -f $(abs_top_builddir)/include
+	rm -rf $(abs_top_builddir)/include
 	rm -f testsuite
 	rm -f package.m4
 

@@ -20,9 +20,9 @@
 #include "ast/ExecutionOrder.h"
 #include "ast/ExecutionPlan.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
 #include "ast/analysis/RecursiveClauses.h"
 #include "ast/analysis/RelationSchedule.h"
+#include "ast/utility/Utils.h"
 #include "reports/ErrorReport.h"
 #include <algorithm>
 #include <map>

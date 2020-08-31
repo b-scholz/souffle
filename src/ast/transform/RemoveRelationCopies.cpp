@@ -21,10 +21,10 @@
 #include "ast/RecordInit.h"
 #include "ast/Relation.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
 #include "ast/Variable.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/IOType.h"
+#include "ast/utility/Utils.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/utility/ContainerUtil.h"
 #include <algorithm>
 #include <cassert>

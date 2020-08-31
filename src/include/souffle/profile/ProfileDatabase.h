@@ -1,7 +1,7 @@
 #pragma once
 
-#include "souffle/json11.h"
 #include "souffle/utility/MiscUtil.h"
+#include "souffle/utility/json11.h"
 #include <cassert>
 #include <chrono>
 #include <cstddef>

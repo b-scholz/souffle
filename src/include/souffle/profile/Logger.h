@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "souffle/ProfileEvent.h"
+#include "souffle/profile/ProfileEvent.h"
 #include "souffle/utility/MiscUtil.h"
 #include <cstddef>
 #include <functional>

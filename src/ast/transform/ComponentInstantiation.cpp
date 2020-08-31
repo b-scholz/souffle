@@ -30,8 +30,8 @@
 #include "ast/Type.h"
 #include "ast/TypeCast.h"
 #include "ast/UnionType.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/ComponentLookup.h"
+#include "ast/utility/Visitor.h"
 #include "reports/ErrorReport.h"
 #include "souffle/utility/StringUtil.h"
 #include <algorithm>

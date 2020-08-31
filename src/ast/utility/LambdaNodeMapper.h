@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "ast/NodeMapper.h"
+#include "ast/utility/NodeMapper.h"
 #include <memory>
 #include <utility>
 

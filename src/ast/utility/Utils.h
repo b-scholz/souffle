@@ -229,6 +229,12 @@ bool isFact(const AstClause& clause);
 bool isRule(const AstClause& clause);
 
 /**
+ * Returns whether the given atom is a propositon
+ * @return true iff the atom has no arguments
+ */
+bool isProposition(const AstAtom* atom);
+
+/**
  * Returns a clause which contains head of the given clause
  * @param clause the clause which head to be cloned
  * @return pointer to clause which has head cloned from given clause

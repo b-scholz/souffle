@@ -21,8 +21,8 @@
 #include "ast/QualifiedName.h"
 #include "ast/Relation.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
-#include "ast/Visitor.h"
+#include "ast/utility/Utils.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/utility/MiscUtil.h"
 #include <memory>
 #include <utility>

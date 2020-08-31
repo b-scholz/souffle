@@ -18,8 +18,8 @@
 #include "souffle/RecordTable.h"
 #include "souffle/SymbolTable.h"
 #include "souffle/io/SerialisationStream.h"
-#include "souffle/json11.h"
 #include "souffle/utility/MiscUtil.h"
+#include "souffle/utility/json11.h"
 #include <cassert>
 #include <cstddef>
 #include <map>

@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "souffle/ProfileEvent.h"
 #include "souffle/profile/OutputProcessor.h"
+#include "souffle/profile/ProfileEvent.h"
 #include "souffle/profile/htmlCssChartist.h"
 #include "souffle/profile/htmlCssStyle.h"
 #include "souffle/profile/htmlJsChartistMin.h"

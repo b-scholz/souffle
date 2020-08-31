@@ -19,7 +19,7 @@
 #include "ast/Pragma.h"
 #include "ast/Program.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Visitor.h"
+#include "ast/utility/Visitor.h"
 #include <utility>
 #include <vector>
 

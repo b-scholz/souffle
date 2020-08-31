@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include "souffle/EventProcessor.h"
-#include "souffle/ProfileDatabase.h"
+#include "souffle/profile/EventProcessor.h"
+#include "souffle/profile/ProfileDatabase.h"
 #include "souffle/utility/MiscUtil.h"
 #include <atomic>
 #include <chrono>

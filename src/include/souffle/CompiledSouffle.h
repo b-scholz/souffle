@@ -38,8 +38,8 @@
 #include "souffle/utility/StringUtil.h"
 #ifndef __EMBEDDED_SOUFFLE__
 #include "souffle/CompiledOptions.h"
-#include "souffle/Logger.h"
-#include "souffle/ProfileEvent.h"
+#include "souffle/profile/Logger.h"
+#include "souffle/profile/ProfileEvent.h"
 #endif
 #include <array>
 #include <atomic>

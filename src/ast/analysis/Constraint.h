@@ -21,7 +21,7 @@
 #include "ast/Clause.h"
 #include "ast/Node.h"
 #include "ast/Variable.h"
-#include "ast/Visitor.h"
+#include "ast/utility/Visitor.h"
 #include <map>
 #include <memory>
 #include <ostream>

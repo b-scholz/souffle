@@ -22,9 +22,9 @@
 #include "ast/Node.h"
 #include "ast/Program.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/RelationDetailCache.h"
+#include "ast/utility/Utils.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/utility/StreamUtil.h"
 #include <algorithm>
 #include <set>

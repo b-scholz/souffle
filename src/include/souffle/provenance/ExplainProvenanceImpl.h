@@ -17,11 +17,11 @@
 #pragma once
 
 #include "souffle/BinaryConstraintOps.h"
-#include "souffle/ExplainProvenance.h"
-#include "souffle/ExplainTree.h"
 #include "souffle/RamTypes.h"
 #include "souffle/SouffleInterface.h"
 #include "souffle/SymbolTable.h"
+#include "souffle/provenance/ExplainProvenance.h"
+#include "souffle/provenance/ExplainTree.h"
 #include "souffle/utility/ContainerUtil.h"
 #include "souffle/utility/MiscUtil.h"
 #include "souffle/utility/StreamUtil.h"

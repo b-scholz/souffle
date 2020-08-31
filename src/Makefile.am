@@ -22,15 +22,17 @@ souffle_datastructure_sources = \
         include/souffle/datastructure/UnionFind.h
 
 souffle_profile_sources = \
-        include/souffle/ProfileDatabase.h                  \
-        include/souffle/json11.h                           \
         include/souffle/profile/Cell.h                     \
         include/souffle/profile/CellInterface.h            \
         include/souffle/profile/Cli.h                      \
         include/souffle/profile/DataComparator.h           \
+        include/souffle/profile/EventProcessor.h           \
         include/souffle/profile/HtmlGenerator.h            \
         include/souffle/profile/Iteration.h                \
+        include/souffle/profile/Logger.h                   \
         include/souffle/profile/OutputProcessor.h          \
+        include/souffle/profile/ProfileDatabase.h          \
+        include/souffle/profile/ProfileEvent.h             \
         include/souffle/profile/ProgramRun.h               \
         include/souffle/profile/Reader.h                   \
         include/souffle/profile/Relation.h                 \
@@ -48,6 +50,12 @@ souffle_profile_sources = \
         include/souffle/profile/htmlJsTableSort.h          \
         include/souffle/profile/htmlJsUtil.h               \
         include/souffle/profile/htmlMain.h
+
+souffle_provenance_sources = \
+        include/souffle/provenance/Explain.h               \
+        include/souffle/provenance/ExplainProvenance.h     \
+        include/souffle/provenance/ExplainProvenanceImpl.h \
+        include/souffle/provenance/ExplainTree.h
 
 souffle_swig_sources = \
         include/souffle/swig/SwigInterface.h               \
@@ -76,6 +84,7 @@ souffle_utility_sources = \
         include/souffle/utility/ParallelUtil.h             \
         include/souffle/utility/StreamUtil.h               \
         include/souffle/utility/StringUtil.h               \
+        include/souffle/utility/json11.h                   \
         include/souffle/utility/tinyformat.h
 
 DIR := ${CURDIR}
@@ -115,12 +124,10 @@ souffle_sources = \
         ast/FunctorDeclaration.h                           \
         ast/Directive.h                                    \
         ast/IntrinsicFunctor.h                             \
-        ast/LambdaNodeMapper.h                             \
         ast/Literal.h                                      \
         ast/Negation.h                                     \
         ast/NilConstant.h                                  \
         ast/Node.h                                         \
-        ast/NodeMapper.h                                   \
         ast/NumericConstant.h                              \
         ast/Pragma.h                                       \
         ast/Program.h                                      \
@@ -139,10 +146,7 @@ souffle_sources = \
         ast/UnionType.h                                    \
         ast/UnnamedVariable.h                              \
         ast/UserDefinedFunctor.h                           \
-        ast/Utils.cpp                                      \
-        ast/Utils.h                                        \
         ast/Variable.h                                     \
-        ast/Visitor.h                                      \
         ast/analysis/Analysis.h                            \
         ast/analysis/AuxArity.cpp                          \
         ast/analysis/AuxArity.h                            \
@@ -257,6 +261,13 @@ souffle_sources = \
         ast/transform/UserDefinedFunctors.cpp              \
         ast/transform/UserDefinedFunctors.h                \
         ast/transform/While.h                              \
+        ast/utility/BindingStore.h                         \
+        ast/utility/BindingStore.cpp                       \
+        ast/utility/LambdaNodeMapper.h                     \
+        ast/utility/NodeMapper.h                           \
+        ast/utility/Utils.cpp                              \
+        ast/utility/Utils.h                                \
+        ast/utility/Visitor.h                              \
         ast2ram/AstToRamTranslator.cpp                     \
         ast2ram/AstToRamTranslator.h                       \
         interpreter/InterpreterContext.h                   \
@@ -438,21 +449,12 @@ soufflepublic_HEADERS = \
         include/souffle/CompiledOptions.h                  \
         include/souffle/CompiledSouffle.h                  \
         include/souffle/CompiledTuple.h                    \
-        include/souffle/EventProcessor.h                   \
-        include/souffle/Explain.h                          \
-        include/souffle/ExplainProvenance.h                \
-        include/souffle/ExplainProvenanceImpl.h            \
-        include/souffle/ExplainTree.h                      \
-        include/souffle/Logger.h                           \
-        include/souffle/ProfileDatabase.h                  \
-        include/souffle/ProfileEvent.h                     \
         include/souffle/RamTypes.h                         \
         include/souffle/RecordTable.h                      \
         include/souffle/SignalHandler.h                    \
         include/souffle/SouffleInterface.h                 \
         include/souffle/SymbolTable.h                      \
-        include/souffle/TypeAttribute.h                    \
-        include/souffle/json11.h
+        include/souffle/TypeAttribute.h
 
 souffledatastructuredir = $(soufflepublicdir)/datastructure
 
@@ -461,6 +463,10 @@ souffledatastructure_HEADERS = $(souffle_datastructure_sources)
 souffleprofiledir = $(soufflepublicdir)/profile
 
 souffleprofile_HEADERS = $(souffle_profile_sources)
+
+souffleprovenancedir = $(soufflepublicdir)/provenance
+
+souffleprovenance_HEADERS = $(souffle_provenance_sources)
 
 souffleswigdir = $(soufflepublicdir)/swig
 

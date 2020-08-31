@@ -22,12 +22,12 @@
 #include "ast/Program.h"
 #include "ast/RecordType.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/AuxArity.h"
 #include "ast/analysis/TypeEnvironment.h"
 #include "ast/transform/Transformer.h"
-#include "souffle/json11.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/utility/StringUtil.h"
+#include "souffle/utility/json11.h"
 #include <string>
 #include <vector>
 

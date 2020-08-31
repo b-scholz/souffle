@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "souffle/ProfileDatabase.h"
+#include "souffle/profile/ProfileDatabase.h"
 #include "souffle/utility/MiscUtil.h"
 #include "souffle/utility/StreamUtil.h"
 #include <cassert>

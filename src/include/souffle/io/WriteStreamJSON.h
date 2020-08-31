@@ -17,8 +17,8 @@
 #include "souffle/RamTypes.h"
 #include "souffle/SymbolTable.h"
 #include "souffle/io/WriteStream.h"
-#include "souffle/json11.h"
 #include "souffle/utility/ContainerUtil.h"
+#include "souffle/utility/json11.h"
 
 #include <map>
 #include <ostream>

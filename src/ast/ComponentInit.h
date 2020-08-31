@@ -18,7 +18,7 @@
 
 #include "ast/ComponentType.h"
 #include "ast/Node.h"
-#include "ast/NodeMapper.h"
+#include "ast/utility/NodeMapper.h"
 #include "parser/SrcLocation.h"
 #include "souffle/utility/MiscUtil.h"
 #include <memory>

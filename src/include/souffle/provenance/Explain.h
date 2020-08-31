@@ -16,9 +16,9 @@
 
 #pragma once
 
-#include "souffle/ExplainProvenance.h"
-#include "souffle/ExplainProvenanceImpl.h"
-#include "souffle/ExplainTree.h"
+#include "souffle/provenance/ExplainProvenance.h"
+#include "souffle/provenance/ExplainProvenanceImpl.h"
+#include "souffle/provenance/ExplainTree.h"
 #include <algorithm>
 #include <csignal>
 #include <cstdio>

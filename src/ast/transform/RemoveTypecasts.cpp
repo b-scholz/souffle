@@ -15,10 +15,10 @@
 #include "ast/transform/RemoveTypecasts.h"
 #include "ast/Argument.h"
 #include "ast/Node.h"
-#include "ast/NodeMapper.h"
 #include "ast/Program.h"
 #include "ast/TranslationUnit.h"
 #include "ast/TypeCast.h"
+#include "ast/utility/NodeMapper.h"
 #include "souffle/utility/MiscUtil.h"
 #include <memory>
 

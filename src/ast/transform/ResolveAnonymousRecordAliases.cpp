@@ -19,7 +19,6 @@
 #include "ast/Clause.h"
 #include "ast/Literal.h"
 #include "ast/Node.h"
-#include "ast/NodeMapper.h"
 #include "ast/Program.h"
 #include "ast/RecordInit.h"
 #include "ast/TranslationUnit.h"
@@ -28,6 +27,7 @@
 #include "ast/analysis/Ground.h"
 #include "ast/analysis/Type.h"
 #include "ast/analysis/TypeSystem.h"
+#include "ast/utility/NodeMapper.h"
 #include "souffle/BinaryConstraintOps.h"
 #include "souffle/utility/MiscUtil.h"
 #include <map>

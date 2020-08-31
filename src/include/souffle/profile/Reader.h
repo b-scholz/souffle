@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "souffle/ProfileDatabase.h"
-#include "souffle/ProfileEvent.h"
 #include "souffle/profile/Iteration.h"
+#include "souffle/profile/ProfileDatabase.h"
+#include "souffle/profile/ProfileEvent.h"
 #include "souffle/profile/ProgramRun.h"
 #include "souffle/profile/Relation.h"
 #include "souffle/profile/Rule.h"

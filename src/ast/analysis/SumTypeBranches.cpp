@@ -17,9 +17,9 @@
 #include "ast/analysis/SumTypeBranches.h"
 #include "ast/AlgebraicDataType.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/TypeEnvironment.h"
 #include "ast/analysis/TypeSystem.h"
+#include "ast/utility/Visitor.h"
 
 namespace souffle {
 

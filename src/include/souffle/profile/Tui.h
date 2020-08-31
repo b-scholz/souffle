@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "souffle/ProfileEvent.h"
 #include "souffle/profile/HtmlGenerator.h"
 #include "souffle/profile/OutputProcessor.h"
+#include "souffle/profile/ProfileEvent.h"
 #include "souffle/profile/Reader.h"
 #include "souffle/profile/Table.h"
 #include "souffle/profile/UserInputReader.h"

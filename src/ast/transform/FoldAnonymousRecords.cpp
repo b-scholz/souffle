@@ -21,7 +21,7 @@
 #include "ast/Program.h"
 #include "ast/RecordInit.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Visitor.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/BinaryConstraintOps.h"
 #include "souffle/utility/ContainerUtil.h"
 #include "souffle/utility/MiscUtil.h"

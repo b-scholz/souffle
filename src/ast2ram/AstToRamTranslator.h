@@ -44,11 +44,11 @@
 #include "ram/TupleElement.h"
 #include "souffle/RamTypes.h"
 #include "souffle/SymbolTable.h"
-#include "souffle/json11.h"
 #include "souffle/utility/FunctionalUtil.h"
 #include "souffle/utility/MiscUtil.h"
 #include "souffle/utility/StreamUtil.h"
 #include "souffle/utility/StringUtil.h"
+#include "souffle/utility/json11.h"
 #include <cassert>
 #include <cstddef>
 #include <map>

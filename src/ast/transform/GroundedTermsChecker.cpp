@@ -19,10 +19,10 @@
 #include "ast/Program.h"
 #include "ast/RecordInit.h"
 #include "ast/TranslationUnit.h"
-#include "ast/Utils.h"
 #include "ast/Variable.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/Ground.h"
+#include "ast/utility/Utils.h"
+#include "ast/utility/Visitor.h"
 #include "reports/ErrorReport.h"
 #include <map>
 #include <set>

@@ -28,7 +28,7 @@
 #include "ast/SubsetType.h"
 #include "ast/TranslationUnit.h"
 #include "ast/Type.h"
-#include "ast/Utils.h"
+#include "ast/utility/Utils.h"
 #include "reports/ErrorReport.h"
 #include "souffle/utility/ContainerUtil.h"
 #include "souffle/utility/FunctionalUtil.h"

@@ -14,7 +14,7 @@
  *
  ***********************************************************************/
 
-#include "ast/Utils.h"
+#include "ast/utility/Utils.h"
 #include "ast/Aggregator.h"
 #include "ast/Argument.h"
 #include "ast/Atom.h"
@@ -34,10 +34,10 @@
 #include "ast/Relation.h"
 #include "ast/TranslationUnit.h"
 #include "ast/Type.h"
-#include "ast/Visitor.h"
 #include "ast/analysis/RelationDetailCache.h"
 #include "ast/analysis/Type.h"
 #include "ast/analysis/TypeSystem.h"
+#include "ast/utility/Visitor.h"
 #include "souffle/BinaryConstraintOps.h"
 #include "souffle/utility/ContainerUtil.h"
 #include "souffle/utility/FunctionalUtil.h"
@@ -238,6 +238,10 @@ bool isFact(const AstClause& clause) {
 
 bool isRule(const AstClause& clause) {
     return (clause.getHead() != nullptr) && !isFact(clause);
+}
+
+bool isProposition(const AstAtom* atom) {
+    return atom->getArguments().empty();
 }
 
 AstClause* cloneHead(const AstClause* clause) {

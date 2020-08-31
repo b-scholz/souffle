@@ -1260,9 +1260,7 @@ private:
      * Creates new nodes and initializes them with 0.
      */
     static Node* newNode() {
-        auto* res = new Node();
-        std::memset(res->cell, 0, sizeof(Cell) * NUM_CELLS);
-        return res;
+        return new Node();
     }
 
     /**

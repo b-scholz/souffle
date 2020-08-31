@@ -21,7 +21,7 @@
 #include "ast/Literal.h"
 #include "ast/Negation.h"
 #include "ast/Node.h"
-#include "ast/Utils.h"
+#include "ast/utility/Utils.h"
 #include "souffle/utility/ContainerUtil.h"
 #include "souffle/utility/MiscUtil.h"
 #include "souffle/utility/StreamUtil.h"

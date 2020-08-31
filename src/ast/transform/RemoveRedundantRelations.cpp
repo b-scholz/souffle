@@ -17,6 +17,7 @@
 #include "ast/Relation.h"
 #include "ast/TranslationUnit.h"
 #include "ast/analysis/RedundantRelations.h"
+#include "ast/utility/Utils.h"
 #include <set>
 
 namespace souffle {

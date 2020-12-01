@@ -235,7 +235,11 @@ protected:
             }
         }
         for (const auto& dr : directives) {
-            if (pc.getMode() != "extractor") {
+            if (pc.getMode() != "extractor") { 
+                if (pc.isRelation(dr->getQualifiedName().toString()) && dr->getType() != DirectiveType::input) {
+                    os << *dr << "\n";
+                }
+            } else if (pc.isRelation(dr->getQualifiedName().toString()) && dr->getType() == DirectiveType::input) {
                 os << *dr << "\n";
             }
         }

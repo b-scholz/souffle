@@ -64,7 +64,7 @@ public:
     /** convert to a string separated by fullstop */
     std::string toString() const {
         std::stringstream ss;
-        ss << join(qualifiers, ".");
+        ss << join(qualifiers, "_");
         return ss.str();
     }
 
@@ -83,7 +83,7 @@ public:
 
     /** print qualified name */
     void print(std::ostream& out) const {
-        out << join(qualifiers, ".");
+        out << join(qualifiers, "_");
     }
 
     friend std::ostream& operator<<(std::ostream& out, const QualifiedName& id) {

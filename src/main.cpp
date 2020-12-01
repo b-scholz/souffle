@@ -476,8 +476,10 @@ int main(int argc, char** argv) {
             Global::config().has("provenance"), mk<ast::transform::ProvenanceTransformer>());
 
     // Main pipeline
-    auto pipeline = mk<ast::transform::PipelineTransformer>(mk<ast::transform::ComponentChecker>(),
-            mk<ast::transform::ComponentInstantiationTransformer>(),
+    auto pipeline = mk<ast::transform::PipelineTransformer>(
+            mk<ast::transform::ComponentChecker>(), mk<ast::transform::ComponentInstantiationTransformer>()
+#if 0
+            ,
             mk<ast::transform::IODefaultsTransformer>(),
             mk<ast::transform::SimplifyAggregateTargetExpressionTransformer>(),
             mk<ast::transform::UniqueAggregationVariablesTransformer>(),
@@ -509,7 +511,9 @@ int main(int argc, char** argv) {
             mk<ast::transform::RemoveEmptyRelationsTransformer>(),
             mk<ast::transform::AddNullariesToAtomlessAggregatesTransformer>(),
             mk<ast::transform::ReorderLiteralsTransformer>(), mk<ast::transform::ExecutionPlanChecker>(),
-            std::move(provenancePipeline), mk<ast::transform::IOAttributesTransformer>());
+            std::move(provenancePipeline), mk<ast::transform::IOAttributesTransformer>()
+#endif
+    );
 
     // Disable unwanted transformations
     if (Global::config().has("disable-transformers")) {
@@ -552,6 +556,11 @@ int main(int argc, char** argv) {
     // Apply all the transformations
     pipeline->apply(*astTranslationUnit);
 
+    // print program
+    std::cout << astTranslationUnit->getProgram() << std::endl;
+    return 0;
+
+#if 0
     if (Global::config().has("show")) {
         // Output the transformed datalog and return
         if (Global::config().get("show") == "transformed-datalog") {
@@ -731,6 +740,7 @@ int main(int argc, char** argv) {
     }
 
     return 0;
+#endif
 }
 
 }  // end of namespace souffle

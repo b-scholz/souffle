@@ -23,6 +23,7 @@
 #include "ast/FunctorDeclaration.h"
 #include "ast/Node.h"
 #include "ast/Pragma.h"
+#include "ast/PrintController.h"
 #include "ast/QualifiedName.h"
 #include "ast/Relation.h"
 #include "ast/Type.h"
@@ -197,15 +198,47 @@ protected:
         auto show = [&](auto&& xs, char const* sep = "\n") {
             if (!xs.empty()) os << join(xs, sep) << "\n";
         };
+        const PrintController& pc = PrintController::getInstance();
 
         show(pragmas, "\n\n");
         show(components);
         show(instantiations);
         show(types);
         show(functors);
-        show(relations);
-        show(clauses, "\n\n");
-        show(directives, "\n\n");
+        for (const auto& rel : relations) {
+            if (pc.isRelation(rel->getQualifiedName().toString())) {
+                if (pc.getMode() == "extractor") {
+                    os << *rel << "\n";
+                    os << ".output " << rel->getQualifiedName() << "(name=\""
+                       << rel->getQualifiedName().toString() << ".txt\")" << std::endl;
+                } else {
+                    os << *rel << "\n";
+                    os << ".input " << rel->getQualifiedName() << "(name=\""
+                       << rel->getQualifiedName().toString() << ".txt\")" << std::endl;
+                }
+            } else {
+                if (pc.getMode() != "extractor") {
+                    os << *rel << "\n";
+                }
+            }
+        }
+        for (const auto& cl : clauses) {
+            Atom* head = cl->getHead();
+            if (pc.isRelation(head->getQualifiedName().toString())) {
+                if (pc.getMode() == "extractor") {
+                    os << *cl << "\n";
+                }
+            } else {
+                if (pc.getMode() != "extractor") {
+                    os << *cl << "\n";
+                }
+            }
+        }
+        for (const auto& dr : directives) {
+            if (pc.getMode() != "extractor") {
+                os << *dr << "\n";
+            }
+        }
     }
 
     bool equal(const Node& node) const override {

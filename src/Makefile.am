@@ -43,6 +43,7 @@ souffle_sources = \
         ast/IntrinsicFunctor.h                             \
         ast/Literal.h                                      \
         ast/Negation.h                                     \
+        ast/PrintController.h                              \
         ast/NilConstant.h                                  \
         ast/Node.h                                         \
         ast/NumericConstant.h                              \

@@ -57,7 +57,7 @@ public:
         return relations; 
     } 
 
-    const bool isRelation(const std::string name) const { 
+    bool isRelation(const std::string name) const { 
         return relations.find(name) != relations.end(); 
     } 
 

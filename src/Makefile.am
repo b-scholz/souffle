@@ -65,6 +65,8 @@ souffle_sources = \
         ast/UnnamedVariable.h                              \
         ast/UserDefinedFunctor.h                           \
         ast/Variable.h                                     \
+        ast/analysis/AggAnalysis.h                         \
+        ast/analysis/AggAnalysis.cpp                       \
         ast/analysis/Aggregate.cpp                         \
         ast/analysis/Aggregate.h                           \
         ast/analysis/Analysis.h                            \

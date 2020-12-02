@@ -20,6 +20,7 @@
 #include "ast/TranslationUnit.h"
 #include "ast/analysis/PrecedenceGraph.h"
 #include "ast/analysis/SCCGraph.h"
+#include "ast/analysis/AggAnalysis.h"
 #include "ast/analysis/Type.h"
 #include "ast/transform/AddNullariesToAtomlessAggregates.h"
 #include "ast/transform/ComponentChecker.h"
@@ -477,7 +478,9 @@ int main(int argc, char** argv) {
 
     // Main pipeline
     auto pipeline = mk<ast::transform::PipelineTransformer>(mk<ast::transform::ComponentChecker>(),
-            mk<ast::transform::ComponentInstantiationTransformer>(),
+            mk<ast::transform::ComponentInstantiationTransformer>()
+#if 0
+            ,
             mk<ast::transform::IODefaultsTransformer>(),
             mk<ast::transform::SimplifyAggregateTargetExpressionTransformer>(),
             mk<ast::transform::UniqueAggregationVariablesTransformer>(),
@@ -509,7 +512,9 @@ int main(int argc, char** argv) {
             mk<ast::transform::RemoveEmptyRelationsTransformer>(),
             mk<ast::transform::AddNullariesToAtomlessAggregatesTransformer>(),
             mk<ast::transform::ReorderLiteralsTransformer>(), mk<ast::transform::ExecutionPlanChecker>(),
-            std::move(provenancePipeline), mk<ast::transform::IOAttributesTransformer>());
+            std::move(provenancePipeline), mk<ast::transform::IOAttributesTransformer>()
+#endif 
+);
 
     // Disable unwanted transformations
     if (Global::config().has("disable-transformers")) {
@@ -552,6 +557,9 @@ int main(int argc, char** argv) {
     // Apply all the transformations
     pipeline->apply(*astTranslationUnit);
 
+    astTranslationUnit->getAnalysis<ast::analysis::AggAnalysis>(); 
+
+#if 0
     if (Global::config().has("show")) {
         // Output the transformed datalog and return
         if (Global::config().get("show") == "transformed-datalog") {
@@ -729,6 +737,7 @@ int main(int argc, char** argv) {
         std::cout << "Total Time: " << std::chrono::duration<double>(souffle_end - souffle_start).count()
                   << "sec\n";
     }
+#endif
 
     return 0;
 }

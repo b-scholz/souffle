@@ -110,6 +110,17 @@ public:
         }
         return externOutPreds;
     }
+    
+    /** Get all relations of a SCC. */
+    std::set<const Relation*> getRelations(const size_t scc) const {
+        std::set<const Relation*> rels;
+        for(const auto p : relationToScc) { 
+            if (p.second == scc) { 
+                rels.insert(p.first); 
+            } 
+        } 
+        return rels;
+    }
 
     /** Get all external non-output predecessor relations of a given SCC. */
     std::set<const Relation*> getExternalNonOutputPredecessorRelations(const size_t scc) const {

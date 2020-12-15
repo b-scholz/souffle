@@ -137,7 +137,7 @@ void TypeAnalysis::print(std::ostream& os) const {
 }
 
 TypeAttribute TypeAnalysis::getFunctorReturnType(const Functor* functor) const {
-    assert(hasValidTypeInfo(functor) && "type of functor not processed");
+    // assert(hasValidTypeInfo(functor) && "type of functor not processed");
     if (auto* intrinsic = as<IntrinsicFunctor>(functor)) {
         return functorInfo.at(intrinsic)->result;
     } else if (const auto* udf = as<UserDefinedFunctor>(functor)) {

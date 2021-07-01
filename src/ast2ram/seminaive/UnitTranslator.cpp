@@ -106,12 +106,14 @@ Own<ram::Statement> UnitTranslator::generateNonRecursiveRelation(const ast::Rela
 
         // Add logging
         if (Global::config().has("profile")) {
-            const std::string& relationName = toString(rel.getQualifiedName());
-            const auto& srcLocation = clause->getSrcLoc();
-            const std::string clauseText = stringify(toString(*clause));
-            const std::string logTimerStatement =
-                    LogStatement::tNonrecursiveRule(relationName, srcLocation, clauseText);
-            rule = mk<ram::LogRelationTimer>(std::move(rule), logTimerStatement, relName);
+            if (!Global::config().has("no-rule-profiling")) {
+                const std::string& relationName = toString(rel.getQualifiedName());
+                const auto& srcLocation = clause->getSrcLoc();
+                const std::string clauseText = stringify(toString(*clause));
+                const std::string logTimerStatement =
+                        LogStatement::tNonrecursiveRule(relationName, srcLocation, clauseText);
+                rule = mk<ram::LogRelationTimer>(std::move(rule), logTimerStatement, relName);
+            }
         }
 
         // Add debug info
@@ -126,21 +128,24 @@ Own<ram::Statement> UnitTranslator::generateNonRecursiveRelation(const ast::Rela
 
     // Add logging for entire relation
     if (Global::config().has("profile")) {
-        const std::string& relationName = toString(rel.getQualifiedName());
-        const auto& srcLocation = rel.getSrcLoc();
-        const std::string logSizeStatement = LogStatement::nNonrecursiveRelation(relationName, srcLocation);
+        if (!Global::config().has("no-rule-profiling")) {
+            const std::string& relationName = toString(rel.getQualifiedName());
+            const auto& srcLocation = rel.getSrcLoc();
+            const std::string logSizeStatement =
+                    LogStatement::nNonrecursiveRelation(relationName, srcLocation);
 
-        // Add timer if we did any work
-        if (!result.empty()) {
-            const std::string logTimerStatement =
-                    LogStatement::tNonrecursiveRelation(relationName, srcLocation);
-            auto newStmt = mk<ram::LogRelationTimer>(
-                    mk<ram::Sequence>(std::move(result)), logTimerStatement, relName);
-            result.clear();
-            appendStmt(result, std::move(newStmt));
-        } else {
-            // Add table size printer
-            appendStmt(result, mk<ram::LogSize>(relName, logSizeStatement));
+            // Add timer if we did any work
+            if (!result.empty()) {
+                const std::string logTimerStatement =
+                        LogStatement::tNonrecursiveRelation(relationName, srcLocation);
+                auto newStmt = mk<ram::LogRelationTimer>(
+                        mk<ram::Sequence>(std::move(result)), logTimerStatement, relName);
+                result.clear();
+                appendStmt(result, std::move(newStmt));
+            } else {
+                // Add table size printer
+                appendStmt(result, mk<ram::LogSize>(relName, logSizeStatement));
+            }
         }
     }
 
@@ -289,9 +294,11 @@ Own<ram::Statement> UnitTranslator::generateStratumTableUpdates(
 
         // Measure update time
         if (Global::config().has("profile")) {
-            updateRelTable = mk<ram::LogRelationTimer>(std::move(updateRelTable),
-                    LogStatement::cRecursiveRelation(toString(rel->getQualifiedName()), rel->getSrcLoc()),
-                    newRelation);
+            if (!Global::config().has("no-rule-profiling")) {
+                updateRelTable = mk<ram::LogRelationTimer>(std::move(updateRelTable),
+                        LogStatement::cRecursiveRelation(toString(rel->getQualifiedName()), rel->getSrcLoc()),
+                        newRelation);
+            }
         }
 
         appendStmt(updateTable, std::move(updateRelTable));
@@ -306,11 +313,14 @@ Own<ram::Statement> UnitTranslator::generateStratumLoopBody(const std::set<const
 
         // add profiling information
         if (Global::config().has("profile")) {
-            const std::string& relationName = toString(rel->getQualifiedName());
-            const auto& srcLocation = rel->getSrcLoc();
-            const std::string logTimerStatement = LogStatement::tRecursiveRelation(relationName, srcLocation);
-            relClauses = mk<ram::LogRelationTimer>(mk<ram::Sequence>(std::move(relClauses)),
-                    logTimerStatement, getNewRelationName(rel->getQualifiedName()));
+            if (!Global::config().has("no-rule-profiling")) {
+                const std::string& relationName = toString(rel->getQualifiedName());
+                const auto& srcLocation = rel->getSrcLoc();
+                const std::string logTimerStatement =
+                        LogStatement::tRecursiveRelation(relationName, srcLocation);
+                relClauses = mk<ram::LogRelationTimer>(mk<ram::Sequence>(std::move(relClauses)),
+                        logTimerStatement, getNewRelationName(rel->getQualifiedName()));
+            }
         }
 
         appendStmt(loopBody, mk<ram::Sequence>(std::move(relClauses)));

@@ -104,15 +104,17 @@ Own<ram::Statement> ClauseTranslator::translateRecursiveClause(
 
     // Add logging
     if (Global::config().has("profile")) {
-        const std::string& relationName = getConcreteRelationName(clause.getHead()->getQualifiedName());
-        const auto& srcLocation = clause.getSrcLoc();
-        const std::string clauseText = stringify(toString(clause));
-        const std::string logTimerStatement =
-                LogStatement::tRecursiveRule(relationName, version, srcLocation, clauseText);
-        const std::string logSizeStatement =
-                LogStatement::nRecursiveRule(relationName, version, srcLocation, clauseText);
-        rule = mk<ram::LogRelationTimer>(
-                std::move(rule), logTimerStatement, getNewRelationName(clause.getHead()->getQualifiedName()));
+        if (!Global::config().has("no-rule-profiling")) {
+            const std::string& relationName = getConcreteRelationName(clause.getHead()->getQualifiedName());
+            const auto& srcLocation = clause.getSrcLoc();
+            const std::string clauseText = stringify(toString(clause));
+            const std::string logTimerStatement =
+                    LogStatement::tRecursiveRule(relationName, version, srcLocation, clauseText);
+            const std::string logSizeStatement =
+                    LogStatement::nRecursiveRule(relationName, version, srcLocation, clauseText);
+            rule = mk<ram::LogRelationTimer>(std::move(rule), logTimerStatement,
+                    getNewRelationName(clause.getHead()->getQualifiedName()));
+        }
     }
 
     // Add debug info

@@ -201,6 +201,13 @@ struct get_full_index<0> {
     using type = index<>;
 };
 
+// -- obtains a full index for a given arity --
+template <unsigned arity>
+struct get_full_prov_index {
+    using type =
+         typename extend<typename extend<typename get_full_index<arity - 2>::type, arity - 1>::type, arity - 2>::type;
+};
+
 }  // namespace index_utils
 
 template <std::size_t Arity>
@@ -209,6 +216,9 @@ using t_tuple = typename souffle::Tuple<RamDomain, Arity>;
 // The comparator to be used for B-tree nodes.
 template <std::size_t Arity>
 using comparator = typename index_utils::get_full_index<Arity>::type::comparator;
+
+template <std::size_t Arity>
+using prov_comparator = typename index_utils::get_full_prov_index<Arity>::type::comparator;
 
 // Alias for btree_set
 template <std::size_t Arity>
@@ -229,7 +239,7 @@ struct ProvenanceUpdater {
 
 // Alias for Provenance
 template <std::size_t Arity>
-using Provenance = btree_set<t_tuple<Arity>, comparator<Arity>, std::allocator<t_tuple<Arity>>, 256,
+using Provenance = btree_set<t_tuple<Arity>, prov_comparator<Arity>, std::allocator<t_tuple<Arity>>, 256,
         typename detail::default_strategy<t_tuple<Arity>>::type, comparator<Arity - 2>,
         ProvenanceUpdater<Arity>>;
 

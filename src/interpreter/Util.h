@@ -204,8 +204,8 @@ struct get_full_index<0> {
 // -- obtains a full index for a given arity --
 template <unsigned arity>
 struct get_full_prov_index {
-    using type =
-         typename extend<typename extend<typename get_full_index<arity - 2>::type, arity - 1>::type, arity - 2>::type;
+    using type = typename extend<typename extend<typename get_full_index<arity - 2>::type, arity - 1>::type,
+            arity - 2>::type;
 };
 
 }  // namespace index_utils
